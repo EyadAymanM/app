@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import ProductCard from "../components/ProductCard";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 interface IProduct {
   sku: string;
