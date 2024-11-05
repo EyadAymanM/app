@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import ProductCard from "../components/ProductCard";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 interface IProduct {
   sku: string;
@@ -16,17 +16,12 @@ export default function Products() {
   const [products, setProducts] = useState<string[]>([]);
   const [data, setData] = useState<[]>([]);
   const getData = async () => {
-    // const res = await axios.get(
-    //   "https://php-api-gilt.vercel.app",
-    //   // "https://scandiweb-task-eyad.rf.gd/api/index.php",
-    //   // "http://localhost/ecommerce-task/api/index.php",
-    // );
-    // setData(res.data);
-    const res = await fetch(
-      "https://php-api-gilt.vercel.app"
+    const res = await axios.get(
+      "https://php-api-gilt.vercel.app",
+      // "https://scandiweb-task-eyad.rf.gd/api/index.php",
+      // "http://localhost/ecommerce-task/api/index.php",
     );
-    const data = await res.json()
-    setData(data);
+    setData(res.data);
   };
   useEffect(() => {
     getData();
@@ -37,26 +32,19 @@ export default function Products() {
       toast("no products selected");
       return;
     }
-    // const res = await axios.delete(
-    //   "https://php-api-gilt.vercel.app",
-    //   // "https://scandiweb-task-eyad.rf.gd/api/index.php",
-    //   // "http://localhost/ecommerce-task/api/index.php",
-    //   {
-    //     data: { skus: products }, 
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     }
-    //   }
-    // );
-    // if (res.data.status == 204) toast(res.data.message);
-    // setTimeout(() => navigate(0), 1800);
-    await fetch(
-      "https://php-api-gilt.vercel.app",{
-        method:"DELETE",
-        mode: 'cors',
-        body: JSON.stringify({ skus: products }),
-        headers: {"Content-Type": "application/json"},
-      });
+    const res = await axios.delete(
+      "https://php-api-gilt.vercel.app",
+      // "https://scandiweb-task-eyad.rf.gd/api/index.php",
+      // "http://localhost/ecommerce-task/api/index.php",
+      {
+        data: { skus: products }, 
+        headers: {
+          "Content-Type": "application/json",
+        }
+      }
+    );
+    if (res.data.status == 204) toast(res.data.message);
+    setTimeout(() => navigate(0), 1800);
   };
   return (
     <>
