@@ -25,7 +25,7 @@ export default function Products() {
     const res = await fetch(
       "https://php-api-gilt.vercel.app"
     );
-    const data = res.json()
+    const data = await res.json()
     setData(data);
   };
   useEffect(() => {
