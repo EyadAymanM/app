@@ -52,6 +52,7 @@ export default function Products() {
     // setTimeout(() => navigate(0), 1800);
     await fetch(
       "https://php-api-gilt.vercel.app",{
+        method:"DELETE",
         body: JSON.stringify({ skus: products }),
         headers: {"Content-Type": "application/json"},
       });
