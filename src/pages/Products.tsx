@@ -16,12 +16,17 @@ export default function Products() {
   const [products, setProducts] = useState<string[]>([]);
   const [data, setData] = useState<[]>([]);
   const getData = async () => {
-    const res = await axios.get(
-      "https://php-api-gilt.vercel.app",
-      // "https://scandiweb-task-eyad.rf.gd/api/index.php",
-      // "http://localhost/ecommerce-task/api/index.php",
+    // const res = await axios.get(
+    //   "https://php-api-gilt.vercel.app",
+    //   // "https://scandiweb-task-eyad.rf.gd/api/index.php",
+    //   // "http://localhost/ecommerce-task/api/index.php",
+    // );
+    // setData(res.data);
+    const res = await fetch(
+      "https://php-api-gilt.vercel.app"
     );
-    setData(res.data);
+    const data = res.json()
+    setData(data);
   };
   useEffect(() => {
     getData();
@@ -32,19 +37,24 @@ export default function Products() {
       toast("no products selected");
       return;
     }
-    const res = await axios.delete(
-      "https://php-api-gilt.vercel.app",
-      // "https://scandiweb-task-eyad.rf.gd/api/index.php",
-      // "http://localhost/ecommerce-task/api/index.php",
-      {
-        data: { skus: products }, 
-        headers: {
-          "Content-Type": "application/json",
-        }
-      }
-    );
-    if (res.data.status == 204) toast(res.data.message);
-    setTimeout(() => navigate(0), 1800);
+    // const res = await axios.delete(
+    //   "https://php-api-gilt.vercel.app",
+    //   // "https://scandiweb-task-eyad.rf.gd/api/index.php",
+    //   // "http://localhost/ecommerce-task/api/index.php",
+    //   {
+    //     data: { skus: products }, 
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     }
+    //   }
+    // );
+    // if (res.data.status == 204) toast(res.data.message);
+    // setTimeout(() => navigate(0), 1800);
+    const res = await fetch(
+      "https://php-api-gilt.vercel.app",{
+        body: JSON.stringify({ skus: products }),
+        headers: {"Content-Type": "application/json"},
+      });
   };
   return (
     <>
