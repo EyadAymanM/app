@@ -68,7 +68,8 @@ export default function AddProduct() {
       toast(`something wrong with product attribute`);
       return;
     }
-    const res = await axios.post(
+    // const res = await axios.post(
+    await axios.post(
       "https://php-api-gilt.vercel.app",
       // "https://scandiweb-task-eyad.rf.gd/api/index.php",
       // "http://localhost/ecommerce-task/api/index.php",
