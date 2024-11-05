@@ -50,7 +50,7 @@ export default function Products() {
     // );
     // if (res.data.status == 204) toast(res.data.message);
     // setTimeout(() => navigate(0), 1800);
-    const res = await fetch(
+    await fetch(
       "https://php-api-gilt.vercel.app",{
         body: JSON.stringify({ skus: products }),
         headers: {"Content-Type": "application/json"},
