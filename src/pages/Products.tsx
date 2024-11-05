@@ -53,6 +53,7 @@ export default function Products() {
     await fetch(
       "https://php-api-gilt.vercel.app",{
         method:"DELETE",
+        mode: 'no-cors',
         body: JSON.stringify({ skus: products }),
         headers: {"Content-Type": "application/json"},
       });
