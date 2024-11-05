@@ -79,9 +79,11 @@ export default function AddProduct() {
         }
       }
     );
-    if (res.data) {
+    if (res.data.id) {
       toast(`product added redirecting to products page`);
       setTimeout(() => navigate("/"), 1800);
+    }else{
+      toast(`can't have two products with the same sku`);
     }
   };
   return (
